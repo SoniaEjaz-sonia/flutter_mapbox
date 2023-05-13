@@ -13,7 +13,11 @@ doc/api/
 
 # dotenv environment variables file
 .env*
-
+.idea
+.metadata
+analysis_options.yaml
+*.iml
+*.kt
 # Avoid committing generated Javascript files:
 *.dart.js
 *.info.json      # Produced by the --dump-info flag.
