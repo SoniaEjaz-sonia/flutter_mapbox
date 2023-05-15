@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mapbox/helpers/shared_prefs.dart';
 
 import '../core/models/restaurant_model.dart';
 import '../main.dart';
@@ -125,7 +126,9 @@ class _RestaurantsScreenState extends State<RestaurantsScreen> {
                                               cardButtons(Icons.call, 'Call'),
                                               cardButtons(Icons.location_on, 'Map'),
                                               const Spacer(),
-                                              const Text('2km'),
+                                              Text(
+                                                '${(getDistanceFromSharedPrefs(index) / 1000).toStringAsFixed(2)}km',
+                                              ),
                                             ],
                                           )
                                         ],

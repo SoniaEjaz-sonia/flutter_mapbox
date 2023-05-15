@@ -29,3 +29,7 @@ Map getGeometryFromSharedPrefs(int index) {
   Map geometry = getDecodedResponseFromSharedPrefs(index)['geometry'];
   return geometry;
 }
+
+void saveDirectionsAPIResponse(int index, String response) {
+  sharedPreferences.setString('restaurant--$index', response);
+}
