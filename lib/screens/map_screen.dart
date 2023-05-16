@@ -78,7 +78,7 @@ class _MapsScreenState extends State<MapsScreen> {
     // Add a polyLine between source and destination
     Map geometry = getGeometryFromSharedPrefs(carouselData[index]["index"]);
 
-    final _fills = {
+    final fills = {
       "type": "FeatureCollection",
       "features": [
         {
@@ -97,7 +97,7 @@ class _MapsScreenState extends State<MapsScreen> {
     }
 
     // Add new source and lineLayer
-    await controller.addSource("fills", GeojsonSourceProperties(data: _fills));
+    await controller.addSource("fills", GeojsonSourceProperties(data: fills));
     await controller.addLineLayer(
       "fills",
       "lines",

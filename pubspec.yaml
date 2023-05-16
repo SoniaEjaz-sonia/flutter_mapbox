@@ -21,6 +21,7 @@ dependencies:
   dio: ^4.0.4
   flutter_native_splash: ^2.2.16
   supabase_flutter: ^1.9.1
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
