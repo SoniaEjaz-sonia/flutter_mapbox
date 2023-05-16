@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mapbox/core/repository/supabase_repo.dart';
+import 'package:flutter_mapbox/screens/home_screen.dart';
 import 'package:flutter_mapbox/screens/splash_screen.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: ThemeMode.dark,
+      getPages: [
+        GetPage(name: "/home", page: () => const HomeScreen()),
+      ],
       home: SplashScreen(),
     );
   }

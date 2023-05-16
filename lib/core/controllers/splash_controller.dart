@@ -12,6 +12,8 @@ class SplashController extends GetxController {
   RxDouble latitude = 0.0.obs;
   RxDouble longitude = 0.0.obs;
   RxList<Map> directionsAPIResponse = <Map>[].obs;
+  late LatLng currentLatLng;
+  late List<RestaurantModel> restaurants;
 
   @override
   void onInit() {
@@ -38,8 +40,9 @@ class SplashController extends GetxController {
 
     // Get capture the current user location
     LocationData locationData = await location.getLocation();
-    LatLng currentLatLng = LatLng(locationData.latitude!, locationData.longitude!);
+    currentLatLng = LatLng(locationData.latitude!, locationData.longitude!);
 
+    // setting location to hardcoded for better user experience
     currentLatLng = const LatLng(37.33248492696747, -122.03122933325918);
 
     // Store the user location
@@ -47,7 +50,7 @@ class SplashController extends GetxController {
     longitude.value = currentLatLng.longitude;
 
     // Get and store the directions API response
-    List<RestaurantModel> restaurants = await supabaseRepo.fetchAllRestaurants();
+    restaurants = await supabaseRepo.fetchAllRestaurants();
 
     for (var i = 0; i < restaurants.length; i++) {
       Map modifiedResponse = await MapBoxRepo().getDirectionsAPIResponse(currentLatLng, i);
@@ -55,6 +58,6 @@ class SplashController extends GetxController {
       directionsAPIResponse.add(modifiedResponse);
     }
 
-    Get.offAll(() => const HomeScreen());
+    Get.offAll(const HomeScreen());
   }
 }
