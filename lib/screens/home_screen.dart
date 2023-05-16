@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Widget> _pages = [MapsScreen(), const RestaurantsScreen()];
+  final List<Widget> _pages = [MapsScreen(), RestaurantsScreen()];
 
   int _index = 0;
 
