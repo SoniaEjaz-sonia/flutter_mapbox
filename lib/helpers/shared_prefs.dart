@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_mapbox/core/models/restaurant_model.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 
 import '../main.dart';
@@ -32,4 +33,9 @@ Map getGeometryFromSharedPrefs(int index) {
 
 void saveDirectionsAPIResponse(int index, String response) {
   sharedPreferences.setString('restaurant--$index', response);
+}
+
+LatLng getLatLngFromRestaurantData(RestaurantModel restaurant) {
+  return LatLng(double.parse(restaurant.coordinates!.latitude!),
+      double.parse(restaurant.coordinates!.longitude!));
 }
