@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mapbox/screens/map_screen.dart';
-import 'package:flutter_mapbox/screens/retaurants_list.dart';
+import 'package:flutter_mapbox/screens/retaurants_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

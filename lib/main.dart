@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: ThemeMode.dark,
       getPages: [
+        GetPage(name: "/splash", page: () => SplashScreen()),
         GetPage(name: "/home", page: () => const HomeScreen()),
       ],
       home: SplashScreen(),
