@@ -33,6 +33,10 @@ class SupabaseRepo {
     return user;
   }
 
+  Future<void> signOutUser() async {
+    await client.auth.signOut();
+  }
+
   Future<List<RestaurantModel>> fetchAllRestaurants() async {
     final List data = await client.from('restaurants').select();
 

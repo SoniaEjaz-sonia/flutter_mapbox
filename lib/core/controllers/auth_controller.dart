@@ -24,8 +24,6 @@ class AuthController extends GetxController {
 
       if (user != null) {
         Get.offAll(() => const HomeScreen());
-      } else {
-        Get.offAll(() => LoginScreen());
       }
 
       isLoading.toggle();
@@ -88,6 +86,31 @@ class AuthController extends GetxController {
 
         Get.offAll(LoginScreen());
       }
+
+      isLoading.toggle();
+    } catch (e) {
+      Get.showSnackbar(
+        GetSnackBar(
+          title: "WARNING!",
+          message: e.toString(),
+          icon: const Icon(Icons.warning, color: Colors.white),
+          duration: const Duration(seconds: 3),
+          backgroundColor: Colors.red,
+        ),
+      );
+      isLoading.toggle();
+    }
+  }
+
+  Future<void> signOutUser() async {
+    await supabaseRepo.signOutUser();
+
+    try {
+      isLoading.toggle();
+
+      await supabaseRepo.signOutUser();
+
+      Get.offAll(LoginScreen());
 
       isLoading.toggle();
     } catch (e) {

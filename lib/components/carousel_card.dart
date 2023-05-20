@@ -25,7 +25,7 @@ Widget carouselCard(RestaurantModel restaurantData, num distance, num duration) 
                 Text(restaurantData.items!, overflow: TextOverflow.ellipsis),
                 const SizedBox(height: 5),
                 Text(
-                  '${distance.toStringAsFixed(2)}kms, ${duration.toStringAsFixed(2)} mins',
+                  '${distance.toStringAsFixed(2)}kms, ${duration.round()} min',
                   style: const TextStyle(color: Colors.tealAccent),
                 )
               ],

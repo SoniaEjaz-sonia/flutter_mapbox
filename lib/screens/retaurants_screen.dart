@@ -4,13 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mapbox/core/controllers/restaurants_controller.dart';
-import 'package:flutter_mapbox/helpers/shared_prefs.dart';
+import 'package:flutter_mapbox/core/controllers/splash_controller.dart';
 import 'package:get/get.dart';
 
 class RestaurantsScreen extends StatelessWidget {
   RestaurantsScreen({Key? key}) : super(key: key);
 
   RestaurantsController controller = Get.put(RestaurantsController());
+  SplashController splashController = Get.find<SplashController>();
 
   Widget cardButtons(IconData iconData, String label) {
     return Padding(
@@ -99,7 +100,7 @@ class RestaurantsScreen extends StatelessWidget {
                                     cardButtons(Icons.location_on, 'Map'),
                                     const Spacer(),
                                     Text(
-                                      '${(getDistanceFromSharedPrefs(index) / 1000).toStringAsFixed(2)}km',
+                                      '${(splashController.directionsAPIResponse[index]["distance"] / 1000).toStringAsFixed(2)}km',
                                     ),
                                   ],
                                 )

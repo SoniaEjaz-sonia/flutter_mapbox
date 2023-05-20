@@ -1,7 +1,6 @@
 import 'package:flutter_mapbox/core/models/restaurant_model.dart';
 import 'package:flutter_mapbox/core/repository/mapbox_repo.dart';
 import 'package:flutter_mapbox/main.dart';
-import 'package:flutter_mapbox/screens/home_screen.dart';
 import 'package:flutter_mapbox/screens/login_screen.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
@@ -15,6 +14,8 @@ class SplashController extends GetxController {
   RxList<Map> directionsAPIResponse = <Map>[].obs;
   late LatLng currentLatLng;
   late List<RestaurantModel> restaurants;
+
+  RxList<num> distances = <num>[].obs;
 
   @override
   void onInit() {
@@ -59,6 +60,6 @@ class SplashController extends GetxController {
       directionsAPIResponse.add(modifiedResponse);
     }
 
-    Get.offAll(LoginScreen());
+    Get.offAll(() => LoginScreen());
   }
 }

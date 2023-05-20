@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mapbox/components/carousel_card.dart';
+import 'package:flutter_mapbox/core/controllers/auth_controller.dart';
 import 'package:flutter_mapbox/core/controllers/splash_controller.dart';
 import 'package:flutter_mapbox/core/models/restaurant_model.dart';
-import 'package:flutter_mapbox/helpers/shared_prefs.dart';
 import 'package:get/get.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 
@@ -10,6 +10,7 @@ class MapsController extends GetxController {
   static MapsController get instance => Get.find();
 
   SplashController splashController = Get.find<SplashController>();
+  AuthController authController = Get.find<AuthController>();
 
   // Mapbox related
   late LatLng latLng;
@@ -32,10 +33,10 @@ class MapsController extends GetxController {
 
     restaurants = splashController.restaurants;
 
-    // Calculate the distance and time from data in SharedPreferences
+    // Calculate the distance and time from data
     for (int index = 0; index < restaurants.length; index++) {
-      num distance = getDistanceFromSharedPrefs(index) / 1000;
-      num duration = getDurationFromSharedPrefs(index) / 60;
+      num distance = splashController.directionsAPIResponse[index]["distance"] / 1000;
+      num duration = splashController.directionsAPIResponse[index]["duration"] / 60;
 
       carouselData.add({
         'index': index,
@@ -72,7 +73,7 @@ class MapsController extends GetxController {
     mapboxController.animateCamera(CameraUpdate.newCameraPosition(kRestaurantsList[index]));
 
     // Add a polyLine between source and destination
-    Map geometry = getGeometryFromSharedPrefs(carouselData[index]["index"]);
+    Map geometry = splashController.directionsAPIResponse[carouselData[index]["index"]]["geometry"];
 
     final fills = {
       "type": "FeatureCollection",
@@ -117,5 +118,10 @@ class MapsController extends GetxController {
     }
 
     addSourceAndLineLayer(0, false);
+  }
+
+  LatLng getLatLngFromRestaurantData(RestaurantModel restaurant) {
+    return LatLng(double.parse(restaurant.coordinates!.latitude!),
+        double.parse(restaurant.coordinates!.longitude!));
   }
 }

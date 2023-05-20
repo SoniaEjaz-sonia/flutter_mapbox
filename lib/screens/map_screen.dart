@@ -3,6 +3,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_mapbox/core/controllers/auth_controller.dart';
 import 'package:flutter_mapbox/core/controllers/maps_controller.dart';
 import 'package:get/get.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
@@ -11,12 +12,19 @@ class MapsScreen extends StatelessWidget {
   MapsScreen({Key? key}) : super(key: key);
 
   MapsController controller = Get.put(MapsController());
+  AuthController authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Restaurants Map'),
+        actions: [
+          IconButton(
+            onPressed: () => authController.signOutUser(),
+            icon: const Icon(Icons.power_settings_new_outlined),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Stack(
