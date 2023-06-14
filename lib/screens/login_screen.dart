@@ -62,6 +62,7 @@ class LoginScreen extends StatelessWidget {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   name: 'password',
                   cursorColor: Colors.white,
+                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     labelStyle: const TextStyle(color: Colors.white),

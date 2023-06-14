@@ -12,7 +12,7 @@ pubspec.lock
 doc/api/
 
 # dotenv environment variables file
-
+.env*
 .idea
 .metadata
 analysis_options.yaml
